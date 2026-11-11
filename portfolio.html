@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Muchui | Portfolio</title>
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Portfolio website</div>
+        <nav aria-label="Main navigation">
+            <a href="#home" aria-current="page">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-inner">
+                <div class="hero-copy">
+                    <small>SOFTWARE ENGINEERING STUDENT</small>
+                    <h1>HELLO, I'M <span class="name">DAVID MUCHUI</span></h1>
+                    <p>I build useful digital experiences and I'm currently looking for an internship opportunity.</p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#contact">Get in touch</a>
+                        <a class="button button-secondary" href="David-Muchui-CV.html" download="David-Muchui-CV.html">Download CV</a>
+                    </div>
+                </div>
+                <img class="hero-profile-picture" src="passport.jpeg" alt="Profile photo of David Muchui">
+            </div>
+        </section>
+
+        <section class="about-section" id="about">
+            <img class="about-profile-picture" src="passport.jpeg" alt="David Muchui">
+            <div class="about-text">
+                <p class="subtle">GET TO KNOW ME</p>
+                <h2>About me</h2>
+                <p>My name is David Muchui, currently a student at Zetech University, pursuing a diploma in Software Engineering. I enjoy solving real-world problems through programming.</p>
+                <p><strong>Course:</strong> Diploma in Software Engineering</p>
+                <p><strong>University:</strong> Zetech University</p>
+            </div>
+        </section>
+
+        <section class="skills-section" id="skills">
+            <div class="skills-heading">
+                <p>WHAT I AM LEARNING</p>
+                <h2>My Technical Skills</h2>
+                <span>Technologies and tools I use to develop my software engineering skills.</span>
+            </div>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <h3>HTML</h3>
+                    <p>Building the structure of websites.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>CSS</h3>
+                    <p>Styling and layout of websites.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>JavaScript</h3>
+                    <p>Adding interactivity to websites.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>SQL</h3>
+                    <p>Managing and querying databases.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Computer networking</h3>
+                    <p>Understanding network infrastructure.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Git and GitHub</h3>
+                    <p>Managing and tracking code changes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section" id="projects">
+            <div class="project-heading">
+                <p>SOME OF MY PROJECTS</p>
+                <h2>Projects</h2>
+            </div>
+            <div class="project-container">
+                <article class="project-card">
+                    <h3>Barber &amp; Salon Booking System</h3>
+                    <p>This is a simple application designed to replace messy manual scheduling like phone calls, DMs and paper notebooks with a 24/7 automated digital schedule that saves time, cuts down no-shows and lets clients book anytime.</p>
+                    <p>Technologies: HTML, CSS, JavaScript</p>
+                </article>
+                <article class="project-card">
+                    <h3>Flashcard Application</h3>
+                    <p>I designed this application for my personal use and used it to practice programming skills, solve personal study frustrations with existing tools, and deepen my understanding of how memory and software work.</p>
+                    <p>Technologies: HTML, CSS, JavaScript</p>
+                </article>
+                <article class="project-card">
+                    <h3>Personal Portfolio</h3>
+                    <p>A website that introduces me, displays my skills and makes it easy to contact me.</p>
+                    <p>Technologies: HTML, CSS</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="contact-section" id="contact">
+            <div class="contact-heading">
+                <p>GET IN TOUCH</p>
+                <h2>Contact Me</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Let's Talk</h3>
+                    <p>Have a project in mind? Feel free to reach out.</p>
+                    <p>Email: <a href="mailto:DavidMuchui14@gmail.com">DavidMuchui14@gmail.com</a></p>
+                    <p>Location: Kenya</p>
+                </div>
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <label for="contact-name">Enter Your Name</label>
+                        <input type="text" id="contact-name" name="name" placeholder="John Doe" autocomplete="name" required>
+
+                        <label for="contact-email">Enter Your Email</label>
+                        <input type="email" id="contact-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+
+                        <label for="contact-message">Enter Your Message</label>
+                        <textarea id="contact-message" name="message" placeholder="How can I help?" rows="5" required></textarea>
+
+                        <button type="submit">Send Message</button>
+                        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const navLinks = document.querySelectorAll('nav a');
+        const sections = Array.from(navLinks, (link) =>
+            document.querySelector(link.getAttribute('href'))
+        ).filter(Boolean);
+
+        navLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+                navLinks.forEach((item) => item.removeAttribute('aria-current'));
+                link.setAttribute('aria-current', 'page');
+            });
+        });
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            const visibleSections = entries
+                .filter((entry) => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+            if (visibleSections.length === 0) return;
+
+            const activeId = visibleSections[0].target.id;
+            navLinks.forEach((link) => {
+                if (link.hash === `#${activeId}`) {
+                    link.setAttribute('aria-current', 'page');
+                } else {
+                    link.removeAttribute('aria-current');
+                }
+            });
+        }, { rootMargin: '-20% 0px -65% 0px', threshold: 0 });
+
+        sections.forEach((section) => sectionObserver.observe(section));
+
+        document.getElementById('contact-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const form = event.currentTarget;
+            const name = form.elements.name.value.trim();
+            const email = form.elements.email.value.trim();
+            const message = form.elements.message.value.trim();
+            const subject = encodeURIComponent(`Portfolio contact from ${name}`);
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+
+            document.getElementById('form-status').textContent =
+                'Opening your email app to send this message.';
+            window.location.href = `mailto:DavidMuchui14@gmail.com?subject=${subject}&body=${body}`;
+        });
+    </script>
+</body>
+</html>
